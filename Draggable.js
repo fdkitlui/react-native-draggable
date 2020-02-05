@@ -159,7 +159,7 @@ export default function Draggable(props) {
     };
   }, [shouldReverse]);
 
-  const positionCss = React.useMemo(() => {
+  /*const positionCss = React.useMemo(() => {
     const Window = Dimensions.get('window');
     return {
       position: 'absolute',
@@ -168,7 +168,7 @@ export default function Draggable(props) {
       width: Window.width,
       height: Window.height,
     };
-  }, []);
+  }, []);*/
 
   const dragItemCss = React.useMemo(() => {
     const style = {
@@ -247,8 +247,13 @@ export default function Draggable(props) {
     );
   }, [maxX, maxY, minX, minY]);
 
+  let containerStyle = {};
+  if (props.style) {
+    containerStyle = props.style;
+  }
+
   return (
-    <View pointerEvents="box-none" style={positionCss}>
+    <View pointerEvents="box-none" style={containerStyle}>
       {debug && getDebugView()}
       <Animated.View
         pointerEvents="box-none"
